@@ -1,0 +1,175 @@
+{% extends "base.html"  %}
+
+{% block title %} Problems {% endblock %}
+
+{% block meta %}
+
+<meta name="description" content="company coding questions">
+<meta name = "website" content="Leetcodeproblems.tech">
+<meta name="description" content="Welcome to our website! Here, you will find a collection of over 1000 coding problems related to companies sourced from open source GitHub repositories. These problems are carefully selected to provide a challenging and rewarding learning experience for developers at all levels. Explore our collection and improve your skills with the latest technologies and best practices. Happy coding!">
+<meta name="keywords" content="company wise coding questions, leetcode comapany wise coding questions, leetcode, coding problems, companies, open source, GitHub, developers, skills, technologies, apple, google, amazon, best practices"><meta name="description" content="{{ name }} previous coding questions">
+<meta name="description" content="leetcode coding questions">
+<meta name="description" content="Company wise coding questions">
+<meta name="description" content="coding questions">
+<meta name="description" content="exam coding questions">
+<meta name="description" content="drive coding questions">
+<meta name="description" content="interview coding questions">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src = "{{ url_for('static', filename='assets/js/problems.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+  <!-- Your page content goes here -->
+  <a href="#" id="move-to-top">
+    <i class="fa fa-arrow-up"></i>
+  </a>
+
+<style>
+#move-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: black;
+    font-size: 30px;
+}
+
+</style>
+    <form>
+<div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="levelFilter">Level</label>
+                        <select class="form-select" id="levelFilter">
+                                <option value ="All" >All</option>
+                                <option value ="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                                <option value="Premium">Premium</option>
+                        </select>
+            </div>
+            <div class="col-md-6">
+                <label for="categoryFilter">Category</label>
+                <select class="form-select" id="categoryFilter">
+                    <option selected  value="All">All</option>
+                    <option value="array">Array</option>
+                    <option value="backtracking">Backtracking</option>
+                    <option value="binary-indexed-tree">Binary-indexed-tree</option>
+                    <option value="binary-search">Binary-search</option>
+                    <option value="binary-search-tree">Binary-search-tree</option>
+                    <option value="binary-tree">Binary-tree</option>
+                    <option value="bit-manipulation">Bit-manipulation</option>
+                    <option value="bitmask">Bitmask</option>
+                    <option value="brainteaser">Brainteaser</option>
+                    <option value="breadth-first-search">Breadth-first-search</option>
+                    <option value="bucket-sort">Bucket-sort</option>
+                    <option value="combinatorics">Combinatorics</option>
+                    <option value="concurrency">Concurrency</option>
+                    <option value="counting">Counting</option>
+                    <option value="counting-sort">Counting-sort</option>
+                    <option value="data-stream">Data-stream</option>
+                    <option value="depth-first-search">Depth-first-search</option>
+                    <option value="design">Design</option>
+                    <option value="divide-and-conquer">Divide-and-conquer</option>
+                    <option value="doubly-linked-list">Doubly-linked-list</option>
+                    <option value="dynamic-programming">Dynamic-programming</option>
+                    <option value="enumeration">Enumeration</option>
+                    <option value="eulerian-circuit">Eulerian-circuit</option>
+                    <option value="game-theory">Game-theory</option>
+                    <option value="geometry">Geometry</option>
+                    <option value="graph">Graph</option>
+                    <option value="greedy">Greedy</option>
+                    <option value="hash-function">Hash-function</option>
+                    <option value="hash-table">Hash-table</option>
+                    <option value="heap-priority-queue">Heap-priority-queue</option>
+                    <option value="interactive">Interactive</option>
+                    <option value="iterator">Iterator</option>
+                    <option value="line-sweep">Line-sweep</option>
+                    <option value="linked-list">Linked-list</option>
+                    <option value="math">Math</option>
+                    <option value="matrix">Matrix</option>
+                    <option value="memoization">Memoization</option>
+                    <option value="merge-sort">Merge-sort</option>
+                    <option value="monotonic-queue">Monotonic-queue</option>
+                    <option value="monotonic-stack">Monotonic-stack</option>
+                    <option value="number-theory">Number-theory</option>
+                    <option value="ordered-set">Ordered-set</option>
+                    <option value="prefix-sum">Prefix-sum</option>
+                    <option value="queue">Queue</option>
+                    <option value="quickselect">Quickselect</option>
+                    <option value="radix-sort">Radix-sort</option>
+                    <option value="randomized">Randomized</option>
+                    <option value="recursion">Recursion</option>
+                    <option value="rejection-sampling">Rejection-sampling</option>
+                    <option value="reservoir-sampling">Reservoir-sampling</option>
+                    <option value="rolling-hash">Rolling-hash</option>
+                    <option value="segment-tree">Segment-tree</option>
+                    <option value="shortest-path">Shortest-path</option>
+                    <option value="simulation">Simulation</option>
+                    <option value="sliding-window">Sliding-window</option>
+                    <option value="sorting">Sorting</option>
+                    <option value="stack">Stack</option>
+                    <option value="string">String</option>
+                    <option value="string-matching">String-matching</option>
+                    <option value="topological-sort">Topological-sort</option>
+                    <option value="tree">Tree</option>
+                    <option value="trie">Trie</option>
+                    <option value="two-pointers">Two-pointers</option>
+                    <option value="union-find">Union-find</option>
+                </select>
+            </div>
+            <div class = "col-md-6">
+                <!--search bar-->
+
+                        <input class = "form-control" style="margin-top: 10px" type="text" placeholder="search questions" name="query" id="query">
+                </div>
+                            <div class = "col-md-6">
+                        <button class = "btn btn-primary" id = 'search-button' type="submit" style="margin-top: 10px;">Search</button>
+                            </div>
+
+            </div>
+        </div>
+
+
+<div id = "filter">
+<div class="table-responsive d-lg-flex align-items-lg-center" style="margin-top: 20px; margin-right: 20px; margin-left: 20px;">
+
+            <table class="table table-responsive">
+
+            <thead>
+                <tr class="text-start">
+                    <th style="font-family: Raleway, sans-serif;width: 20px;">S.no</th>
+                    <th style="font-family: Raleway, sans-serif;" onclick=" sortTable(1)" >Name</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(2)">Level</th>
+                <th style="font-family: Raleway, sans-serif;" onclick="sortTable(3)">Frequency</th>
+                </tr>
+            </thead>
+            <tbody style="font-family: Raleway, sans-serif;"  id="table-body">
+                {% for problem in problems%}
+                <tr style="font-family: Raleway, sans-serif;">
+                    <td style="font-family: Raleway, sans-serif;width: 20px;">{{ loop.index + 50*(page-1)}}</td>
+                    <td style="font-family: Raleway, sans-serif;"><a href ="/code?name={{ problem['name'] }}" >{{ problem['name'] }}</a></td>
+                    <td style="font-family: Raleway, sans-serif;width: 48px">{{ problem['level'] }}</td>
+                    <td style="font-family: Raleway, sans-serif;">{{ problem['total_companies'] }}</td>
+                </tr>
+               {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    <nav>
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a  class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+        <li class="page-item"><a id="page-number" class="page-link">1</a></li>
+        <li class="page-item"><a  class="page-link" aria-label="Next" ><span aria-hidden="true">»</span></a></li>
+    </ul>
+</nav>
+
+</form>
+
+{% endblock %}
+
+
+
