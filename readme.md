@@ -1,0 +1,6 @@
+# Interview Prep Pro
+## Tech Stack
+!(Tech Stack)[https://saipraveenkondapalli.github.io/assets/img/tech-stack-interview-prep-pro.png]
+
+## About 
+"Interview Prep Pro" is a project designed to help individuals prepare for coding interviews at top technology companies. It is built using Python, MongoDB, and Bootstrap, and features over 1200 coding questions from 150+ of the industry's leading companies. The questions are organized by category and company, making it easy for users to find relevant content and start practicing their skills. Additionally, the project includes direct links to Leetcode practice problems, providing users with a comprehensive resource for coding interview preparation. The project is also in progress and it is Enabling users to contribute questions to keep the resource relevant to the current job market. This feature will allow the project to stay up-to-date with the latest trends and technologies in the industry, and ensure that users are well-prepared for the types of questions they may encounter in real-world interviews.
