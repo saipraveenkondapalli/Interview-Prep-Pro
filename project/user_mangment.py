@@ -1,15 +1,16 @@
-from project import app , bcrypt , db , login_manager , mail, oauth
-from flask import render_template , redirect , url_for , flash , request, make_response
-from project.models import User
-from flask_login import login_user , logout_user , current_user , login_required
-from mongoengine.errors import NotUniqueError as MongoNotUniqueError
-from project.mail import forget_password_mail_async as forget_send_mail
+from flask import render_template, redirect, url_for, request, make_response
+from flask_login import login_user, logout_user, login_required
 from itsdangerous import URLSafeTimedSerializer as Serializer, SignatureExpired, BadSignature
+from mongoengine.errors import NotUniqueError as MongoNotUniqueError
+
+from project import app, bcrypt, oauth
+from project.mail import forget_password_mail_async as forget_send_mail
+from project.models import User
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    next = request.args.get('next')
+    next_para = request.args.get('next')
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -19,9 +20,9 @@ def login():
                 return make_response("You already have an account. Please login with your social account", 401)
         if user is not None and bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            if not next:
-                next = '/companies'
-            return make_response(str(next), 200)
+            if not next_para:
+                next_para = '/companies'
+            return make_response(str(next_para), 200)
         else:
             return make_response("Wrong Email id or Password", 401)
     return render_template('login.html')
@@ -52,7 +53,6 @@ def register():
 
 # ----------------------------------------------------------- GOOGLE LOGIN --------------------------------------------------------
 
-
 @app.route('/google', methods=["POST", "GET"])
 def google():
     google = oauth.create_client('google')
@@ -78,6 +78,7 @@ def authorize():
     login_user(user)
     return redirect('/companies')
 
+
 # ------------------------------------------------------- END OF GOOGLE LOGIN ----------------------------------------------------------------------------------
 
 
@@ -100,19 +101,19 @@ def forget():
 def reset_password(token):
     s = Serializer(app.config['SECRET_KEY'])  # creates a serializer object
     try:
-        email = s.loads(token, salt='password-reset', max_age=600) # max age is 10 minutes   i.e 600 seconds
+        email = s.loads(token, salt='password-reset', max_age=600)  # max age is 10 minutes   i.e 600 seconds
         user = User.objects(email=email).first()
         if request.method == 'POST':
-                password_hash = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
-                user.password = password_hash
-                user.save()
-                return redirect('/login')
+            password_hash = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+            user.password = password_hash
+            user.save()
+            return redirect('/login')
 
-    except SignatureExpired:   # if the token is expired
-        return render_template("forget.html", msg = "The token is expired")
+    except SignatureExpired:  # if the token is expired
+        return render_template("forget.html", msg="The token is expired")
 
-    except BadSignature:   # if the token is invalid
-        return render_template("forget.html", msg = "The token is invalid")
+    except BadSignature:  # if the token is invalid
+        return render_template("forget.html", msg="The token is invalid")
 
     return render_template('reset.html', username=user.name)
 
@@ -122,4 +123,3 @@ def reset_password(token):
 def logout():
     logout_user()
     return redirect('/')
-

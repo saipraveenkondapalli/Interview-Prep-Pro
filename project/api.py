@@ -2,7 +2,7 @@ import json
 import requests
 
 from bs4 import BeautifulSoup
-from flask import jsonify, request
+from flask import jsonify
 
 from project import app
 from project.models import Problems

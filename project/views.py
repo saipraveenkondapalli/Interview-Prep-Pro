@@ -31,7 +31,6 @@ def code():
 
 
 """
-
 @app.route('/dashboard')
 @login_required
 def dashboard():

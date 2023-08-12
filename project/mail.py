@@ -1,7 +1,9 @@
 import os
 import json
 import requests
+
 from flask import url_for
+
 from project.models import User
 
 

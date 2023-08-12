@@ -43,3 +43,4 @@ Werkzeug==2.2.3
 wsproto==1.2.0
 WTForms==3.0.1
 beautifulsoup4~=4.12.0
+

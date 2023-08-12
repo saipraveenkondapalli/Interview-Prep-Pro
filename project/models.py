@@ -1,8 +1,11 @@
-from project import db,app, bcrypt
+from project import db, app, bcrypt
+
 from flask_login import UserMixin
+
 from itsdangerous import URLSafeTimedSerializer as Serializer
 import random
 import string
+
 
 class User(UserMixin, db.Document):
     name = db.StringField(required= True)
